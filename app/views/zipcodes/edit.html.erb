@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @zipcode.errors.any? %>
+  <% @zipcode.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Zipcode #<%= @zipcode.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_zipcode/<%= @zipcode.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for zipcode -->
+      <div class="form-group">
+        <label for="zipcode" class="control-label">
+          Zipcode
+        </label>
+
+        <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode" class="form-control" value="<%= @zipcode.zipcode %>">
+      </div>
+
+      <!-- Label and input for agency_id -->
+      <div class="form-group">
+        <label for="agency_id" class="control-label">
+          Agency
+        </label>
+
+        <input type="text" id="agency_id" name="agency_id" placeholder="Agency" class="form-control" value="<%= @zipcode.agency_id %>">
+      </div>
+
+      <!-- Label and input for county -->
+      <div class="form-group">
+        <label for="county" class="control-label">
+          County
+        </label>
+
+        <input type="text" id="county" name="county" placeholder="County" class="form-control" value="<%= @zipcode.county %>">
+      </div>
+
+      <!-- Label and input for state -->
+      <div class="form-group">
+        <label for="state" class="control-label">
+          State
+        </label>
+
+        <input type="text" id="state" name="state" placeholder="State" class="form-control" value="<%= @zipcode.state %>">
+      </div>
+
+      <!-- Label and input for agent_id -->
+      <div class="form-group">
+        <label for="agent_id" class="control-label">
+          Agent
+        </label>
+
+        <input type="text" id="agent_id" name="agent_id" placeholder="Agent" class="form-control" value="<%= @zipcode.agent_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Zipcode
+      </button>
+      or
+      <a href="/zipcodes/<%= @zipcode.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<!-- Validation failure messages -->
+<% if @appointment.errors.any? %>
+  <% @appointment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Appointment #<%= @appointment.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_appointment/<%= @appointment.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for appt_time -->
+      <div class="form-group">
+        <label for="appt_time" class="control-label">
+          Appt time
+        </label>
+
+        <input type="text" id="appt_time" name="appt_time" placeholder="Appt time" class="form-control" value="<%= @appointment.appt_time %>">
+      </div>
+
+      <!-- Label and input for appt_date -->
+      <div class="form-group">
+        <label for="appt_date" class="control-label">
+          Appt date
+        </label>
+
+        <input type="text" id="appt_date" name="appt_date" placeholder="Appt date" class="form-control" value="<%= @appointment.appt_date %>">
+      </div>
+
+      <!-- Label and input for lead_id -->
+      <div class="form-group">
+        <label for="lead_id" class="control-label">
+          Lead
+        </label>
+
+        <input type="text" id="lead_id" name="lead_id" placeholder="Lead" class="form-control" value="<%= @appointment.lead_id %>">
+      </div>
+
+      <!-- Label and input for agent_id -->
+      <div class="form-group">
+        <label for="agent_id" class="control-label">
+          Agent
+        </label>
+
+        <input type="text" id="agent_id" name="agent_id" placeholder="Agent" class="form-control" value="<%= @appointment.agent_id %>">
+      </div>
+
+      <!-- Label and input for outcome -->
+      <div class="form-group">
+        <label for="outcome" class="control-label">
+          Outcome
+        </label>
+
+        <input type="text" id="outcome" name="outcome" placeholder="Outcome" class="form-control" value="<%= @appointment.outcome %>">
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @appointment.notes %></textarea>
+      </div>
+
+      <!-- Label and input for agency_id -->
+      <div class="form-group">
+        <label for="agency_id" class="control-label">
+          Agency
+        </label>
+
+        <input type="text" id="agency_id" name="agency_id" placeholder="Agency" class="form-control" value="<%= @appointment.agency_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Appointment
+      </button>
+      or
+      <a href="/appointments/<%= @appointment.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

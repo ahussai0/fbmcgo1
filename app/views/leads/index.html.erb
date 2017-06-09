@@ -1,0 +1,92 @@
+<div class="page-header">
+  <h1>
+    Leads
+    <a href="/leads/new" class="btn btn-lg btn-success">New Lead</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Status</th>
+        <th>Premium</th>
+        <th>Pdf</th>
+        <th>Agent</th>
+        <th>Hphone</th>
+        <th>Wphone</th>
+        <th>Cphone</th>
+        <th>Dob</th>
+        <th>Sdob</th>
+        <th>Smoker</th>
+        <th>Spousesmoke</th>
+        <th>Email</th>
+        <th>Notes</th>
+        <th>Occupation</th>
+        <th>Policy</th>
+        <th>Agency</th>
+        <th>Bullet1</th>
+        <th>Bullet2</th>
+        <th>Bullet3</th>
+        <th>Bullet4</th>
+        <th>Bullet5</th>
+        <th>Bullet6</th>
+        <th>Bullet7</th>
+        <th>Mortamt</th>
+        <th>Batchno</th>
+        <th>Recno</th>
+        <th>Dw agn</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @leads.each do |lead| %>
+      <tr>
+        <td><%= lead.firstname %></td>
+        <td><%= lead.lastname %></td>
+        <td><%= lead.address %></td>
+        <td><%= lead.city %></td>
+        <td><%= lead.state %></td>
+        <td><%= lead.zip %></td>
+        <td><%= lead.status %></td>
+        <td><%= lead.premium %></td>
+        <td><%= lead.pdf %></td>
+        <td><%= lead.agent_id %></td>
+        <td><%= lead.hphone %></td>
+        <td><%= lead.wphone %></td>
+        <td><%= lead.cphone %></td>
+        <td><%= lead.dob %></td>
+        <td><%= lead.sdob %></td>
+        <td><%= lead.smoker %></td>
+        <td><%= lead.spousesmoke %></td>
+        <td><%= lead.email %></td>
+        <td><%= lead.notes %></td>
+        <td><%= lead.occupation %></td>
+        <td><%= lead.policy %></td>
+        <td><%= lead.agency_id %></td>
+        <td><%= lead.bullet1 %></td>
+        <td><%= lead.bullet2 %></td>
+        <td><%= lead.bullet3 %></td>
+        <td><%= lead.bullet4 %></td>
+        <td><%= lead.bullet5 %></td>
+        <td><%= lead.bullet6 %></td>
+        <td><%= lead.bullet7 %></td>
+        <td><%= lead.mortamt %></td>
+        <td><%= lead.batchno %></td>
+        <td><%= lead.recno %></td>
+        <td><%= lead.dw_agn %></td>
+        <td>
+          <a href="/leads/<%= lead.id %>" class="btn btn-primary">Show</a>
+          <a href="/leads/<%= lead.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_lead/<%= lead.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

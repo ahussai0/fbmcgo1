@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Agency #<%= @agency.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Code</dt>
+      <dd><%= @agency.code %></dd>
+
+      <dt>Logo</dt>
+      <dd><%= @agency.logo %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @agency.name %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @agency.address %></dd>
+
+      <dt>Phone</dt>
+      <dd><%= @agency.phone %></dd>
+
+      <dt>City</dt>
+      <dd><%= @agency.city %></dd>
+
+      <dt>State</dt>
+      <dd><%= @agency.state %></dd>
+
+      <dt>Zip</dt>
+      <dd><%= @agency.zip %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/agencies" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/agencies/<%= @agency.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_agency/<%= @agency.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="page-header">
+  <h3>Lead #<%= @lead.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Firstname</dt>
+      <dd><%= @lead.firstname %></dd>
+
+      <dt>Lastname</dt>
+      <dd><%= @lead.lastname %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @lead.address %></dd>
+
+      <dt>City</dt>
+      <dd><%= @lead.city %></dd>
+
+      <dt>State</dt>
+      <dd><%= @lead.state %></dd>
+
+      <dt>Zip</dt>
+      <dd><%= @lead.zip %></dd>
+
+      <dt>Status</dt>
+      <dd><%= @lead.status %></dd>
+
+      <dt>Premium</dt>
+      <dd><%= @lead.premium %></dd>
+
+      <dt>Pdf</dt>
+      <dd><%= @lead.pdf %></dd>
+
+      <dt>Agent</dt>
+      <dd><%= @lead.agent_id %></dd>
+
+      <dt>Hphone</dt>
+      <dd><%= @lead.hphone %></dd>
+
+      <dt>Wphone</dt>
+      <dd><%= @lead.wphone %></dd>
+
+      <dt>Cphone</dt>
+      <dd><%= @lead.cphone %></dd>
+
+      <dt>Dob</dt>
+      <dd><%= @lead.dob %></dd>
+
+      <dt>Sdob</dt>
+      <dd><%= @lead.sdob %></dd>
+
+      <dt>Smoker</dt>
+      <dd><%= @lead.smoker %></dd>
+
+      <dt>Spousesmoke</dt>
+      <dd><%= @lead.spousesmoke %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @lead.email %></dd>
+
+      <dt>Notes</dt>
+      <dd><%= @lead.notes %></dd>
+
+      <dt>Occupation</dt>
+      <dd><%= @lead.occupation %></dd>
+
+      <dt>Policy</dt>
+      <dd><%= @lead.policy %></dd>
+
+      <dt>Agency</dt>
+      <dd><%= @lead.agency_id %></dd>
+
+      <dt>Bullet1</dt>
+      <dd><%= @lead.bullet1 %></dd>
+
+      <dt>Bullet2</dt>
+      <dd><%= @lead.bullet2 %></dd>
+
+      <dt>Bullet3</dt>
+      <dd><%= @lead.bullet3 %></dd>
+
+      <dt>Bullet4</dt>
+      <dd><%= @lead.bullet4 %></dd>
+
+      <dt>Bullet5</dt>
+      <dd><%= @lead.bullet5 %></dd>
+
+      <dt>Bullet6</dt>
+      <dd><%= @lead.bullet6 %></dd>
+
+      <dt>Bullet7</dt>
+      <dd><%= @lead.bullet7 %></dd>
+
+      <dt>Mortamt</dt>
+      <dd><%= @lead.mortamt %></dd>
+
+      <dt>Batchno</dt>
+      <dd><%= @lead.batchno %></dd>
+
+      <dt>Recno</dt>
+      <dd><%= @lead.recno %></dd>
+
+      <dt>Dw agn</dt>
+      <dd><%= @lead.dw_agn %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/leads" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/leads/<%= @lead.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_lead/<%= @lead.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
