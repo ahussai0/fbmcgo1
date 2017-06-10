@@ -1,13 +1,23 @@
+require 'open-uri'
+
 class LeadsController < ApplicationController
   def index
-    @leads = Lead.all
+    @leads = current_agent.leads.all
 
     render("leads/index.html.erb")
   end
 
   def show
     @lead = Lead.find(params[:id])
+    @appointments = @lead.appointments.all
 
+    url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + @lead.address.gsub(" ", "+") + "+" + @lead.city.gsub(" ", "+") + "+" + @lead.state + "+" + @lead.zip
+
+    parsed_data = JSON.parse(open(url).read)
+    if (parsed_data["results"] != [])
+      @lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+      @long = parsed_data["results"][0]["geometry"]["location"]["lng"]
+    end
     render("leads/show.html.erb")
   end
 

@@ -1,12 +1,20 @@
 class AppointmentsController < ApplicationController
   def index
-    @appointments = Appointment.all
+    @appointments = current_agent.appointments.all
 
     render("appointments/index.html.erb")
   end
 
   def show
     @appointment = Appointment.find(params[:id])
+
+    url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + @appointment.lead.address.gsub(" ", "+") + "+" + @appointment.lead.city.gsub(" ", "+") + "+" + @appointment.lead.state + "+" + @appointment.lead.zip
+
+    parsed_data = JSON.parse(open(url).read)
+    if (parsed_data["results"] != [])
+      @lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+      @long = parsed_data["results"][0]["geometry"]["location"]["lng"]
+    end
 
     render("appointments/show.html.erb")
   end
@@ -30,7 +38,10 @@ class AppointmentsController < ApplicationController
 
     save_status = @appointment.save
 
-    if save_status == true
+    if params[:ref] == "lead"
+      redirect_to(:back, :notice => "Appointment created successfully.")
+
+    elsif save_status == true
       redirect_to("/appointments/#{@appointment.id}", :notice => "Appointment created successfully.")
     else
       render("appointments/new.html.erb")

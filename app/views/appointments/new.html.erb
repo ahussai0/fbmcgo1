@@ -24,7 +24,7 @@
           Appt time
         </label>
 
-        <input type="text" id="appt_time" name="appt_time" placeholder="Appt time" class="form-control" value="<%= @appointment.appt_time %>">
+        <input type="time" id="appt_time" name="appt_time" placeholder="Appt time" class="form-control" value="<%= @appointment.appt_time %>">
       </div>
 
       <!-- Label and input for appt_date -->
@@ -33,7 +33,7 @@
           Appt date
         </label>
 
-        <input type="text" id="appt_date" name="appt_date" placeholder="Appt date" class="form-control" value="<%= @appointment.appt_date %>">
+        <input type="date" id="appt_date" name="appt_date" placeholder="Appt date" class="form-control" value="<%= @appointment.appt_date %>">
       </div>
 
       <!-- Label and input for lead_id -->
@@ -41,27 +41,18 @@
         <label for="lead_id" class="control-label">
           Lead
         </label>
+        <%= select_tag(:lead_id, options_from_collection_for_select(Lead.all, :id, :lastname, @appointment.lead_id), :class => "form-control")%>
 
-        <input type="text" id="lead_id" name="lead_id" placeholder="Lead" class="form-control" value="<%= @appointment.lead_id %>">
       </div>
+
+
 
       <!-- Label and input for agent_id -->
-      <div class="form-group">
-        <label for="agent_id" class="control-label">
-          Agent
-        </label>
-
-        <input type="text" id="agent_id" name="agent_id" placeholder="Agent" class="form-control" value="<%= @appointment.agent_id %>">
-      </div>
+      <input type="hidden" name="agent_id" value="<%= current_agent.id %>">
+      <input type="hidden" name="agency_id" value="<%= current_agent.agency_id %>">
 
       <!-- Label and input for outcome -->
-      <div class="form-group">
-        <label for="outcome" class="control-label">
-          Outcome
-        </label>
 
-        <input type="text" id="outcome" name="outcome" placeholder="Outcome" class="form-control" value="<%= @appointment.outcome %>">
-      </div>
 
       <!-- Label and input for notes -->
       <div class="form-group">
@@ -73,13 +64,7 @@
       </div>
 
       <!-- Label and input for agency_id -->
-      <div class="form-group">
-        <label for="agency_id" class="control-label">
-          Agency
-        </label>
 
-        <input type="text" id="agency_id" name="agency_id" placeholder="Agency" class="form-control" value="<%= @appointment.agency_id %>">
-      </div>
 
       <button class="btn btn-success">
         Create Appointment
