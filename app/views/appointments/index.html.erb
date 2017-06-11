@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Appointments
+    Appointments for <%= current_agent.firstname %> <%= current_agent.lastname %><br><br>
     <a href="/appointments/new" class="btn btn-lg btn-success">New Appointment</a>
   </h1>
 </div>
@@ -9,10 +9,10 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Appt time</th>
-        <th>Appt date</th>
-        <th>Lead</th>
-        <th>Agent</th>
+        <th>Time</th>
+        <th>Date</th>
+        <th>Lead Name</th>
+        <th>Agent Name</th>
         <th>Outcome</th>
         <th>Notes</th>
         <th>Agency</th>
@@ -21,13 +21,13 @@
 
       <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.appt_time %></td>
-        <td><%= appointment.appt_date %></td>
-        <td><%= appointment.lead_id %></td>
-        <td><%= appointment.agent_id %></td>
+        <td><%= appointment.appt_time.strftime("%I:%M%p")%></td>
+        <td><%= appointment.appt_date.strftime("%m/%d/%Y") %></td>
+        <td><%= appointment.lead.firstname %> <%= appointment.lead.lastname %></td>
+        <td><%= appointment.agent.firstname %> <%= appointment.agent.lastname %></td>
         <td><%= appointment.outcome %></td>
         <td><%= appointment.notes %></td>
-        <td><%= appointment.agency_id %></td>
+        <td><%= appointment.agency.name %></td>
         <td>
           <a href="/appointments/<%= appointment.id %>" class="btn btn-primary">Show</a>
           <a href="/appointments/<%= appointment.id %>/edit" class="btn btn-warning">Edit</a>

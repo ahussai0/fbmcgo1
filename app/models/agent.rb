@@ -9,7 +9,6 @@ class Agent < ApplicationRecord
   has_many :zipcodes, :dependent => :nullify
   belongs_to :agency, :required => false
   validates :lastname, :presence => true
-  validates :is_mga, :presence => true
   validates :firstname, :presence => true
   validates :code, :presence => true
 end

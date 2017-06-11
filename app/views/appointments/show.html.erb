@@ -1,5 +1,6 @@
 <div class="page-header">
-  <h3>Appointment #<%= @appointment.id %></h3>
+  <h3>Appointment #<%= @appointment.id %> for <%= current_agent.firstname %> <%= current_agent.lastname %></h3>
+  <h4></h4>
 </div>
 
 <div class="row">
@@ -9,35 +10,37 @@
       <%= @appointment.lead.address %><br>
       <%= @appointment.lead.city %>, <%= @appointment.lead.state %>  <%= @appointment.lead.zip %><br>
       <% if @lat != nil  %><img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @lat %>,<%= @long %>&zoom=17&size=400x400&key=AIzaSyCcx5KIGriBpoW_IVL6XPF0ATamX7zg8vc" alt=""><% end  %><br><br>
-      
+
 
     </div>
+    <div class="col-xs-6">
+      <dl class="dl-horizontal">
 
 
+        <dt>Appt date</dt>
+        <dd><%= @appointment.appt_date.strftime("%m/%d/%Y") %></dd>
 
-    <dl class="dl-horizontal">
-      <dt>Appt time</dt>
-      <dd><%= @appointment.appt_time %></dd>
+        <dt>Appt time</dt>
+        <dd><%= @appointment.appt_time.strftime("at %I:%M%p")%></dd>
 
-      <dt>Appt date</dt>
-      <dd><%= @appointment.appt_date %></dd>
+        <dt>Agent</dt>
+        <dd><%= @appointment.agent.firstname%> <%= @appointment.agent.lastname %></dd>
 
-      <dt>Lead</dt>
-      <dd><%= @appointment.lead_id %></dd>
+        <dt>Outcome</dt>
+        <dd><%= @appointment.outcome %></dd>
 
-      <dt>Agent</dt>
-      <dd><%= @appointment.agent_id %></dd>
+        <dt>Notes</dt>
+        <dd><%= @appointment.notes %></dd>
 
-      <dt>Outcome</dt>
-      <dd><%= @appointment.outcome %></dd>
+        <dt>Agency</dt>
+        <dd><%= @appointment.agency.code %></dd>
 
-      <dt>Notes</dt>
-      <dd><%= @appointment.notes %></dd>
+      </dl>
 
-      <dt>Agency</dt>
-      <dd><%= @appointment.agency_id %></dd>
+    </div>
+</div>
 
-    </dl>
+
 
     <div class="btn-group btn-group-justified">
       <a href="/appointments" class="btn btn-primary">

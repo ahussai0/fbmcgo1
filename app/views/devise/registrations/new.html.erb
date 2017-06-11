@@ -24,8 +24,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :is_mga %><br />
-    <%= f.text_field :is_mga, autofocus: true %>
+    <%= f.label :agency_id %><br />
+    <%= f.collection_select :agency_id, Agency.all, :id, :code %>
+
   </div>
 
   <div class="field">

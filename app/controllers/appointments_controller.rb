@@ -51,19 +51,37 @@ class AppointmentsController < ApplicationController
   def edit
     @appointment = Appointment.find(params[:id])
 
+    url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + @appointment.lead.address.gsub(" ", "+") + "+" + @appointment.lead.city.gsub(" ", "+") + "+" + @appointment.lead.state + "+" + @appointment.lead.zip
+
+    parsed_data = JSON.parse(open(url).read)
+    if (parsed_data["results"] != [])
+      @lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+      @long = parsed_data["results"][0]["geometry"]["location"]["lng"]
+    end
+
     render("appointments/edit.html.erb")
   end
 
   def update
+
+
+
     @appointment = Appointment.find(params[:id])
 
-    @appointment.appt_time = params[:appt_time]
+
+    
+      @appointment.appt_time = params[:appt_time]
+
+
     @appointment.appt_date = params[:appt_date]
     @appointment.lead_id = params[:lead_id]
     @appointment.agent_id = params[:agent_id]
     @appointment.outcome = params[:outcome]
     @appointment.notes = params[:notes]
     @appointment.agency_id = params[:agency_id]
+
+
+
 
     save_status = @appointment.save
 

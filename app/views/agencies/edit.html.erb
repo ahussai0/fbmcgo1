@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Agency #<%= @agency.id %></h3>
+  <h3>Edit Agency #<%= @agency.id %> - <%= @agency.name %></h3>
 </div>
 
 <div class="row">
@@ -29,11 +29,9 @@
 
       <!-- Label and input for logo -->
       <div class="form-group">
-        <label for="logo" class="control-label">
-          Logo
-        </label>
 
-        <input type="text" id="logo" name="logo" placeholder="Logo" class="form-control" value="<%= @agency.logo %>">
+
+        <input type="hidden" id="logo" name="logo" placeholder="Logo" class="form-control" value="<%= @agency.logo %>">
       </div>
 
       <!-- Label and input for name -->

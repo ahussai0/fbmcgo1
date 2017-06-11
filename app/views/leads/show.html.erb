@@ -2,46 +2,44 @@
   <h3>Lead <%= @lead.dw_agn %> <%= @lead.batchno %>-<%= @lead.recno %> <%= @lead.firstname %> <%= @lead.lastname %></h3>
 </div>
 
+<div class="btn-group btn-group-justified">
+  <a href="/leads" class="btn btn-primary">
+    Back
+  </a>
+  <a href="/leads/<%= @lead.id %>/edit" class="btn btn-warning">
+    Edit
+  </a>
+  <a href="/delete_lead/<%= @lead.id %>" class="btn btn-danger" rel="nofollow">
+    Delete
+  </a>
+</div>
 
 <div class="container">
 
   <div class="row">
-    <div class="col-xs-6"><%= @lead.firstname %> <%= @lead.lastname %><br>
+    <h2><div class="col-xs-6"><%= @lead.firstname %> <%= @lead.lastname %><br>
       <%= @lead.address %><br>
-      <%= @lead.city %>, <%= @lead.state %>  <%= @lead.zip %><br>
+      <%= @lead.city %>, <%= @lead.state %>  <%= @lead.zip %><br><br>
       <% if @lat != nil  %><img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @lat %>,<%= @long %>&zoom=17&size=400x400&key=AIzaSyCcx5KIGriBpoW_IVL6XPF0ATamX7zg8vc" alt=""><% end  %><br><br>
-      <dt>Status</dt>
-      <dd><%= @lead.status %></dd>
-    </div>
-    <div class="col-xs-6"><a href="/pngs/<%= @lead.pdf %>.png" class="thumbnail"><img src="/pngs/<%= @lead.pdf %>.png" class="img-responsive" alt="Responsive image"></a></div>
+
+    </div></h2>
+    <div class="col-xs-6">      <dt>Status</dt>
+          <dd><%= @lead.status %></dd><br><a href="/pngs/<%= @lead.pdf %>.png" class="thumbnail"><img src="/pngs/<%= @lead.pdf %>.png" class="img-responsive"  alt="Responsive image"></a></div>
   </div>
   <div class="row">
-    <div class="col-xs-6"><dt>Dob</dt>
+    <div class="col-xs-6"><dt>Date of Birth</dt>
       <dd><%= @lead.dob %></dd>
-
-      <dt>Sdob</dt>
-      <dd><%= @lead.sdob %></dd>
-
-      <dt>Smoker</dt>
-      <dd><%= @lead.smoker %></dd>
-
-      <dt>Spousesmoke</dt>
-      <dd><%= @lead.spousesmoke %></dd>
+      <br>
       <dt>Occupation</dt>
       <dd><%= @lead.occupation %></dd>
     </div>
     <div class="col-xs-6">
-      <dt>Hphone</dt>
+      <dt>Home Phone</dt>
       <dd><%= @lead.hphone %></dd>
-
-      <dt>Wphone</dt>
-      <dd><%= @lead.wphone %></dd>
-
-      <dt>Cphone</dt>
-      <dd><%= @lead.cphone %></dd>
+      <br>
 
 
-      <dt>Email</dt>
+      <dt>Email Address</dt>
       <dd><%= @lead.email %></dd>
 
     </div>
@@ -49,15 +47,15 @@
   <div class="row">
     <div class="col-xs-12">
 
-
+            <br>
             <dt>Premium</dt>
             <dd><%= @lead.premium %></dd>
-
+            <br>
 
 
             <dt>Agent</dt>
-            <dd><%= @lead.agent_id %></dd>
-
+            <dd><%= @lead.agent.firstname %> <%= @lead.agent.lastname %></dd>
+            <br>
 
 
 
@@ -66,9 +64,13 @@
 
             <dt>Policy</dt>
             <dd><%= @lead.policy %></dd>
-
+            <br>
             <dt>Agency</dt>
-            <dd><%= @lead.agency_id %></dd>
+            <dd><%= @lead.agency.name %></dd>
+            <br>
+            <dt>Notes</dt>
+            <dd><%= @lead.notes %></dd>
+            <br>
 
 
     </div>
@@ -89,41 +91,42 @@
         <input type="hidden" name="agent_id" value="<%= current_agent.id %>">
         <input type="hidden" name="agency_id" value="<%= @lead.agency_id %>">
         <input type="hidden" name="ref" value="lead">
+
+
+
+        <br>
+        <br>
         <div class="form-group">
           <label for="name" class="control-label">
-            date
+            Date
           </label>
 
-          <input type="date" id="appt_date" name="appt_date" placeholder="Date" class="form-control" >
-          <input type="time" id="appt_time" name="appt_time" placeholder="Time" class="form-control" >
+          <input type="date" id="appt_date" name="appt_date" placeholder="Date"   >
+          <label for="name" class="control-label">
+            Time
+          </label>
+          <input type="time" id="appt_time" name="appt_time" placeholder="Time" >
+          <button class="btn btn-success">
+            Create Appointment
+          </button>
         </div>
-
-        <button class="btn btn-success">
-          Create Appointment
-        </button>
       </form>
 
-      <p>Current Appointments</p>
+      <h3>Current Appointments</h3>
       <table class="table table-striped table-hover">
         <tr>
-          <th>Appt time</th>
-          <th>Appt date</th>
-          <th>Lead</th>
-          <th>Agent</th>
+          <th>Date</th>
+          <th>Time</th>
           <th>Outcome</th>
           <th>Notes</th>
-          <th>Agency</th>
           <th>Actions</th>
         </tr>
       <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.appt_time %></td>
-        <td><%= appointment.appt_date %></td>
-        <td><%= appointment.lead_id %></td>
-        <td><%= appointment.agent_id %></td>
+        <td><%= appointment.appt_date.strftime("%m/%d/%Y") %></td>
+        <td><%= appointment.appt_time.strftime("at %I:%M%p") %></td>
         <td><%= appointment.outcome %></td>
         <td><%= appointment.notes %></td>
-        <td><%= appointment.agency_id %></td>
         <td>
           <a href="/appointments/<%= appointment.id %>" class="btn btn-primary">Show</a>
           <a href="/appointments/<%= appointment.id %>/edit" class="btn btn-warning">Edit</a>
@@ -139,16 +142,6 @@
 
     </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/leads" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/leads/<%= @lead.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_lead/<%= @lead.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
+
   </div>
 </div>

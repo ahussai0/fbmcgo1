@@ -21,7 +21,7 @@
       <!-- Label and input for firstname -->
       <div class="form-group">
         <label for="firstname" class="control-label">
-          Firstname
+          First Name
         </label>
 
         <input type="text" id="firstname" name="firstname" placeholder="Firstname" class="form-control" value="<%= @lead.firstname %>">
@@ -30,7 +30,7 @@
       <!-- Label and input for lastname -->
       <div class="form-group">
         <label for="lastname" class="control-label">
-          Lastname
+          Last Name
         </label>
 
         <input type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control" value="<%= @lead.lastname %>">
@@ -77,8 +77,8 @@
         <label for="status" class="control-label">
           Status
         </label>
+        <%= select_tag(:status, options_for_select([['Pending', 'Pending'], ['Sold', 'Sold'], ['Callback', 'Callback'], ['Appointment', 'Appointment'],  ['Closed', 'Closed']]), :class => "form-control")%>
 
-        <input type="text" id="status" name="status" placeholder="Status" class="form-control" value="<%= @lead.status %>">
       </div>
 
 
@@ -90,14 +90,22 @@
         <label for="agent_id" class="control-label">
           Agent
         </label>
+        <%= select_tag(:agent_id, options_from_collection_for_select(Agent.all, :id, :code, @lead.agent_id), :class => "form-control")%>
 
-        <input type="text" id="agent_id" name="agent_id" placeholder="Agent" class="form-control" value="<%= @lead.agent_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="agency_id" class="control-label">
+          Agency
+        </label>
+        <%= select_tag(:agency_id, options_from_collection_for_select(Agency.all, :id, :code, @lead.agency_id), :class => "form-control")%>
+
       </div>
 
       <!-- Label and input for hphone -->
       <div class="form-group">
         <label for="hphone" class="control-label">
-          Hphone
+          Phone
         </label>
 
         <input type="text" id="hphone" name="hphone" placeholder="Hphone" class="form-control" value="<%= @lead.hphone %>">
@@ -107,19 +115,26 @@
       <!-- Label and input for dob -->
       <div class="form-group">
         <label for="dob" class="control-label">
-          Dob
+          Date of Birth
         </label>
 
         <input type="text" id="dob" name="dob" placeholder="Dob" class="form-control" value="<%= @lead.dob %>">
       </div>
 
+      <div class="form-group">
+        <label for="occupation" class="control-label">
+          Occupation
+        </label>
+
+        <input type="text" id="occupation" name="occupation" placeholder="Occupation" class="form-control" value="<%= @lead.occupation %>">
+      </div>
 
 
 
       <!-- Label and input for email -->
       <div class="form-group">
         <label for="email" class="control-label">
-          Email
+          Email address
         </label>
 
         <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="<%= @lead.email %>">
@@ -135,23 +150,10 @@
       </div>
 
       <!-- Label and input for occupation -->
-      <div class="form-group">
-        <label for="occupation" class="control-label">
-          Occupation
-        </label>
-
-        <input type="text" id="occupation" name="occupation" placeholder="Occupation" class="form-control" value="<%= @lead.occupation %>">
-      </div>
 
 
       <!-- Label and input for agency_id -->
-      <div class="form-group">
-        <label for="agency_id" class="control-label">
-          Agency
-        </label>
 
-        <input type="text" id="agency_id" name="agency_id" placeholder="Agency" class="form-control" value="<%= @lead.agency_id %>">
-      </div>
 
       <!-- Label and input for bullet1 -->
 

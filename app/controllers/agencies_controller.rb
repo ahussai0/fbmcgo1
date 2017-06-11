@@ -7,7 +7,8 @@ class AgenciesController < ApplicationController
 
   def show
     @agency = Agency.find(params[:id])
-
+    @agents = @agency.agents.all
+    @leads = @agency.leads.all
     render("agencies/show.html.erb")
   end
 
