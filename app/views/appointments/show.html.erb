@@ -12,8 +12,10 @@
       <% if @lat != nil  %><img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @lat %>,<%= @long %>&zoom=17&size=400x400&key=AIzaSyCcx5KIGriBpoW_IVL6XPF0ATamX7zg8vc" alt=""><% end  %><br><br>
 
 
+
     </div>
     <div class="col-xs-6">
+
       <dl class="dl-horizontal">
 
 
@@ -34,6 +36,8 @@
 
         <dt>Agency</dt>
         <dd><%= @appointment.agency.code %></dd>
+
+        <dt><a href="/leads/<%= @appointment.lead.id %>">See Lead</a></dt>
 
       </dl>
 
